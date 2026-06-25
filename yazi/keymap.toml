@@ -1,0 +1,17 @@
+#:schema = "https://yazi-rs.github.io/schemas/keymap.json"
+
+[[mgr.prepend_keymap]]
+on = ["g", "u"]
+run = "cd ~/Documents/uni_docs/"
+
+[[mgr.prepend_keymap]]
+on = ["g", "r"]
+run = "cd ~/Recordings"
+
+[[mgr.prepend_keymap]]
+on = ["<C-o>"]
+run = "sort mtime --reverse"
+
+[[mgr.prepend_keymap]]
+on = ["<C-i>"]
+run = "sort mtime --reverse=no"
