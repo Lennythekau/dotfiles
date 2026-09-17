@@ -15,11 +15,13 @@
             "clock",
         ],
         "hyprland/workspaces": {
-            "format": "[{icon}] {windows}",
-            "format-window-separator": " | ",
+            "format": "[{icon}]{windows}",
+            "format-window-separator": "|",
+            "on-click": "activate",
+            "max-windows": 2,
             "workspace-taskbar": {
                 "enable": true,
-                "update-active-window": true,
+                "on-click-window": "sh -c 'ws=$(hyprctl -j clients | jq -r \".[] | select(.address == \\\"{address}\\\") | .workspace.name\"); hyprctl dispatch \"hl.dsp.focus({ workspace = \\\"$ws\\\" })\"'",
                 "format": "{icon} {title:.10}",
                 "icon-size": 14,
             },
