@@ -14,6 +14,8 @@ end
 # Disable the fish greeting
 set -g fish_greeting
 
+set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
+
 starship init fish | source
 
 zoxide init fish | source
@@ -40,3 +42,4 @@ abbr --position anywhere -a pacr sudo pacman -R
 
 # Paths
 abbr --position anywhere -a fishc ~/.config/fish/config.fish
+abbr --position anywhere -a stroke python ~/code/get-char-stroke-order
