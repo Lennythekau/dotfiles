@@ -1,0 +1,22 @@
+theme = "gruvbox"
+
+[editor]
+middle-click-paste = false
+line-number = "relative"
+bufferline = "multiple"
+color-modes = true
+popup-border = "menu"
+trim-final-newlines = true
+trim-trailing-whitespace = true
+
+[editor.cursor-shape]
+insert = "bar"
+
+[editor.statusline]
+left = ["mode", "spinner", "file-name", "file-modification-indicator", "spacer", "diagnostics"]
+center = ["version-control"]
+right = ["selections", "register", "position", "spacer", "position-percentage"]
+
+[editor.indent-guides]
+render = true
+character = "╎"

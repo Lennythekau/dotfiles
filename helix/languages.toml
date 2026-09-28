@@ -1,0 +1,12 @@
+[[language]]
+name = "lua"
+roots = [".luarc.json"]
+
+[[language]]
+name = "markdown"
+text-width = 80
+
+[language.soft-wrap]
+enable = true
+wrap-at-text-width = true
+wrap-indicator = ""
