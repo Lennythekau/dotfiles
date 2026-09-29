@@ -1,6 +1,19 @@
 [[language]]
+name = "go"
+auto-format = true
+
+[[language]]
+name = "python"
+auto-format = true
+
+[[language]]
+name = "haskell"
+auto-format = true
+
+[[language]]
 name = "lua"
 roots = [".luarc.json"]
+auto-format = true
 
 [[language]]
 name = "markdown"
