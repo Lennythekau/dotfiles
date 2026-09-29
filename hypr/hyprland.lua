@@ -6,6 +6,7 @@
 hl.monitor({
 	output = "",
 	mode = "1920x1080@60.03",
+	scale = 1,
 })
 
 ---------------------
@@ -33,8 +34,12 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("dbus-update-activation-environment --systemd --all")
 
 	hl.exec_cmd("kwalletd6 & /usr/lib/pam_kwallet_init & waybar")
+
+	-- System tray applets: network manager and bluetooth
 	hl.exec_cmd("nm-applet & blueman-applet")
 	hl.exec_cmd("hyprpaper")
+
+	-- Run the time slice app
 	hl.exec_cmd("~/code/slice/venv/bin/python ~/code/slice/main.py")
 end)
 
