@@ -322,7 +322,7 @@ hl.bind(
 )
 
 -- Pin
-hl.bind(mainMod .. " + UP", hl.dsp.window.pin())
+hl.bind(ctrlMod .. " + P", hl.dsp.window.pin())
 
 -- Fullscreen
 hl.bind(mainMod .. "+ F", hl.dsp.window.fullscreen())
@@ -392,8 +392,8 @@ hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m region"))
 hl.bind("CTRL + PRINT", hl.dsp.exec_cmd("hyprshot -m output"))
 hl.bind("SHIFT + PRINT", hl.dsp.exec_cmd("hyprshot -m window"))
 
--- hyprlock: TODO: change to something that wont as easily clash with SUPER ALT L
-hl.bind(altMod .. " + l", hl.dsp.exec_cmd("hyprlock"))
+-- hyprlock
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("hyprlock"))
 
 -- reload waybar
 hl.bind(shiftMod .. " + C", hl.dsp.exec_cmd("killall -SIGUSR2 waybar"))
@@ -425,9 +425,6 @@ hl.bind(mainMod .. " + numbersign", hl.dsp.exec_cmd("~/mu/mscore"))
 
 -- dunst, getting out of my face 😠
 hl.bind(mainMod .. " + escape", hl.dsp.exec_cmd("dunstctl close"))
-
--- Microsoft to do
-hl.bind(ctrlMod .. " + T", hl.dsp.exec_cmd("firefox to-do.live.com"))
 
 -- OBS global hotkeys (need to test these)
 hl.bind(mainMod .. " + F1", hl.dsp.pass({ window = "class:com.obsproject.Studio" }))
