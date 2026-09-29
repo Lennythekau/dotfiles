@@ -397,8 +397,8 @@ hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m region"))
 hl.bind("CTRL + PRINT", hl.dsp.exec_cmd("hyprshot -m output"))
 hl.bind("SHIFT + PRINT", hl.dsp.exec_cmd("hyprshot -m window"))
 
--- hyprlock
-hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("hyprlock"))
+-- hyprlock. U for.... [U]mmm couldn't think of anything else :/
+hl.bind(mainMod .. " + U", hl.dsp.exec_cmd("hyprlock"))
 
 -- reload waybar
 hl.bind(shiftMod .. " + C", hl.dsp.exec_cmd("killall -SIGUSR2 waybar"))
@@ -437,6 +437,53 @@ hl.bind(mainMod .. " + F2", hl.dsp.pass({ window = "class:com.obsproject.Studio"
 hl.bind(mainMod .. " + F3", hl.dsp.pass({ window = "class:com.obsproject.Studio" }))
 hl.bind(mainMod .. " + 1", hl.dsp.pass({ window = "class:com.obsproject.Studio" }))
 hl.bind(mainMod .. " + 2", hl.dsp.pass({ window = "class:com.obsproject.Studio" }))
+
+-- controlling mouse using keyboard
+hl.bind(mainMod .. " + M", hl.dsp.submap("mouse"))
+hl.define_submap("mouse", function()
+	local mouseOffsets = {
+		{ key = "Left",  x = -1, y = 0 },
+		{ key = "Right", x = 1,  y = 0 },
+		{ key = "Up",    x = 0,  y = -1 },
+		{ key = "Down",  x = 0,  y = 1 }
+	}
+
+	local mouseMoveCommand = "YDOTOOL_SOCKET=/tmp/.ydotool_socket ydotool mousemove"
+	local mouseKeybindOpts = { repeating = true }
+
+	for _, offset in ipairs(mouseOffsets) do
+		hl.bind(offset.key, hl.dsp.exec_cmd(
+				mouseMoveCommand .. " -x " .. offset.x * 10 .. "  -y" .. offset.y * 10),
+			mouseKeybindOpts)
+
+		hl.bind("CTRL" .. " + " .. offset.key, hl.dsp.exec_cmd(
+				mouseMoveCommand .. " -x " .. offset.x .. "  -y" .. offset.y),
+			mouseKeybindOpts)
+
+		-- For some reason, repeating = true doesn't seem to work for this command
+		if offset.key == "Up" or offset.key == "Down" then
+			hl.bind("ALT" .. " + " .. offset.key,
+				hl.dsp.exec_cmd(mouseMoveCommand .. " -w -x 0 -y " .. -offset.y), mouseKeybindOpts)
+		end
+	end
+
+	local mouseClickCommand = "YDOTOOL_SOCKET=/tmp/.ydotool_socket ydotool click"
+	-- Might need to use the above move commands at the same time
+	local mouseClickOpts = { transparent = true, mouse = true }
+
+	-- Left click
+	hl.bind("d", hl.dsp.exec_cmd(mouseClickCommand .. " 0x40"), { transparent = true, mouse = true })
+	hl.bind("d", hl.dsp.exec_cmd(mouseClickCommand .. " 0x80"),
+		{ transparent = true, click = false, release = true, mouse = true })
+
+	-- right click
+	hl.bind("f", hl.dsp.exec_cmd(mouseClickCommand .. " 0x41"), { transparent = true, mouse = true })
+	hl.bind("f", hl.dsp.exec_cmd(mouseClickCommand .. " 0x81"),
+		{ transparent = true, click = false, release = true, mouse = true })
+
+	hl.bind(mainMod .. " + M", hl.dsp.submap("reset"))
+end)
+
 
 -- Enable/disable touchpad
 -- XXX: doesn't currently work
