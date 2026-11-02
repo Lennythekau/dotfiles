@@ -1,3 +1,5 @@
+use-grammars = { only = [ "haskell"] }
+
 [[language]]
 name = "go"
 auto-format = true
@@ -8,7 +10,11 @@ auto-format = true
 
 [[language]]
 name = "haskell"
-auto-format = true
+auto-format = false
+
+[[grammar]]
+name = "haskell"
+source = { git = "https://github.com/tree-sitter-grammars/tree-sitter-haskell", rev = "98aedbd2d6947a168ba3ba3755d70b0cb6b78395" }
 
 [[language]]
 name = "lua"
